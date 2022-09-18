@@ -1,0 +1,31 @@
+{
+  "name": "Ribone-Viajes",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx nodemon src",
+    "start": "node src",
+    "test": "node postman/newman"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AimonettiJoaquin/Ribone-Viajes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AimonettiJoaquin/Ribone-Viajes/issues"
+  },
+  "homepage": "https://github.com/AimonettiJoaquin/Ribone-Viajes#readme",
+  "dependencies": {
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "morgan": "^1.10.0",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.23.0",
+    "swagger-ui-express": "^4.5.0",
+    "winston": "^3.8.2"
+  }
+}
