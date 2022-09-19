@@ -10,8 +10,8 @@ class ExpressServer {
   constructor() {
     this.app = express();
     this.port = config.port;
-    /* this.basePathDestination = `${config.api.prefix}/destination`;
-    this.basePathTransport = `${config.api.prefix}/transport`;
+    this.basePathDestination = `${config.api.prefix}/destination`;
+    /* this.basePathTransport = `${config.api.prefix}/transport`;
     this.basePathPackage = `${config.api.prefix}/package`;
     this.basePathLodging = `${config.api.prefix}/lodging`;
     this.basePathClient = `${config.api.prefix}/client`;
@@ -42,8 +42,8 @@ class ExpressServer {
       res.sendFile(path.join(__dirname + "../../../../postman/report.html"));
     });
 
-   /*  this.app.use(this.basePathDestination, require("../../routes/destination"));
-    this.app.use(this.basePathTransport, require("../../routes/transport"));
+    this.app.use(this.basePathDestination, require("../../models/destination"));
+    /* this.app.use(this.basePathTransport, require("../../routes/transport"));
     this.app.use(this.basePathPackage, require("../../routes/package"));
     this.app.use(this.basePathLodging, require("../../routes/lodging"));
     this.app.use(this.basePathClient, require("../../routes/client"));
