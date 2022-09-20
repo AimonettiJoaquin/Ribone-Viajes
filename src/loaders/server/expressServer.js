@@ -43,12 +43,6 @@ class ExpressServer {
     });
 
     this.app.use(this.basePathDestination, require("../../models/destination"));
-    /* this.app.use(this.basePathTransport, require("../../routes/transport"));
-    this.app.use(this.basePathPackage, require("../../routes/package"));
-    this.app.use(this.basePathLodging, require("../../routes/lodging"));
-    this.app.use(this.basePathClient, require("../../routes/client"));
-    this.app.use(this.basePathUser, require("../../routes/user"));
-    this.app.use(this.basePathAuth, require("../../routes/auth")); */
   }
 
   _notFound() {
