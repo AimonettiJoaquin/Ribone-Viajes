@@ -8,20 +8,21 @@ const Destination = sequelize.define(
   {
     name: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     image: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
 
   },
   {
     // Other model options go here
   }
+  
 );
 module.exports = Destination;

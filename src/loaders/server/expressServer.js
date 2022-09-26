@@ -1,26 +1,21 @@
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
-/* const swaggerUi = require("swagger-ui-express"); */
+const swaggerUi = require("swagger-ui-express");
 const config = require("../../config");
 const logger = require("../logger");
-
 
 class ExpressServer {
   constructor() {
     this.app = express();
     this.port = config.port;
-    this.basePathDestination = `${config.api.prefix}/destination`;
-    /* this.basePathTransport = `${config.api.prefix}/transport`;
-    this.basePathPackage = `${config.api.prefix}/package`;
-    this.basePathLodging = `${config.api.prefix}/lodging`;
-    this.basePathClient = `${config.api.prefix}/client`;
-    this.basePathUser = `${config.api.prefix}/user`;
-    this.basePathAuth = `${config.api.prefix}/auth`; */
+    this.basePathAuth = `${config.api.prefix}/auth`;
+    this.basePathUser = `${config.api.prefix}/users`;
+    this.basePathDestination = `${config.api.prefix}/destinations`;
 
     this._middlewares();
 
-    /* this._swaggerConfig(); */
+    this._swaggerConfig();
 
     this._routes();
 
@@ -42,13 +37,9 @@ class ExpressServer {
       res.sendFile(path.join(__dirname + "../../../../postman/report.html"));
     });
 
-    this.app.use(this.basePathDestination, require("../../models/destination"));
-    /* this.app.use(this.basePathTransport, require("../../routes/transport"));
-    this.app.use(this.basePathPackage, require("../../routes/package"));
-    this.app.use(this.basePathLodging, require("../../routes/lodging"));
-    this.app.use(this.basePathClient, require("../../routes/client"));
-    this.app.use(this.basePathUser, require("../../routes/user"));
-    this.app.use(this.basePathAuth, require("../../routes/auth")); */
+    this.app.use(this.basePathAuth, require("../../routes/auth"));
+    this.app.use(this.basePathUser, require("../../routes/users"));
+    this.app.use(this.basePathDestination, require("../../routes/destinations"));
   }
 
   _notFound() {
@@ -58,6 +49,7 @@ class ExpressServer {
       next(err);
     });
   }
+
   _errorHandler() {
     this.app.use((err, req, res, next) => {
       const code = err.code || 500;
@@ -78,13 +70,13 @@ class ExpressServer {
     });
   }
 
-  /* _swaggerConfig() {
+  _swaggerConfig() {
     this.app.use(
       config.swagger.path,
       swaggerUi.serve,
       swaggerUi.setup(require("../swagger/swagger.json"))
     );
-  } */
+  }
 
   async start() {
     this.app.listen(this.port, (error) => {

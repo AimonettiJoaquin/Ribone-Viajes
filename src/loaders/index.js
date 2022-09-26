@@ -2,9 +2,8 @@ const ExpressServer = require("./server/expressServer");
 const sequelize = require("./sequelize");
 const config = require("../config");
 const logger = require("./logger");
- require("../models/destination");
 
-
+require("../models/destination");
 
 module.exports = async () => {
   try {
