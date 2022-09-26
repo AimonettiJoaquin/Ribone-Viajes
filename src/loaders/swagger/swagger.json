@@ -1,0 +1,119 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Ribone-Viajes API",
+    "description": "This is an API for the Alkemy's Challenge",
+    "contact": {
+      "email": "Yaimonetti@hotmail.com"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://localhost:3000/api/v1",
+      "description": "Develop"
+    },
+    {
+      "url": "https://disney-api-alkemy.herokuapp.com/",
+      "description": "Production"
+    }
+  ],
+  "tags": [
+    {
+      "name": "users",
+      "description": "User's operations"
+    },
+    {
+      "name": "developers",
+      "description": "Operations available to regular developers"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "tags": [
+          "users"
+        ],
+        "summary": "get all users",
+        "responses": {
+          "200": {
+            "description": "User's array in JSON format.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "users"
+        ],
+        "summary": "adds an user",
+        "description": "Adds an user to the system",
+        "responses": {
+          "201": {
+            "description": "User created"
+          },
+          "400": {
+            "description": "invalid input, object invalid"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "User": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "User's id",
+            "example": "1"
+          },
+          "email": {
+            "type": "string",
+            "example": "Yaimonetti@hotmail.com"
+          },
+          "name": {
+            "type": "string",
+            "example": "Joaquin Aimonetti"
+          },
+          "password": {
+            "type": "string",
+            "example": "$2b$10$hDDJ.C/3IinqGwzH2kSwk.JRj4kGuQdtxSKYeiR8kiKccXGCv48x."
+          },
+          "enable": {
+            "type": "boolean",
+            "example": "true"
+          },
+          "role": {
+            "type": "string",
+            "example": "ADMIN_ROLE"
+          },
+          "createdAt": {
+            "type": "date-time",
+            "example": "2022-02-27T18:08:20.000Z"
+          },
+          "updatedAt": {
+            "type": "date-time",
+            "example": "2022-02-27T18:08:20.000Z"
+          }
+        }
+      }
+    }
+  }
+}

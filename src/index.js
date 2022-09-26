@@ -1,6 +1,5 @@
 const startServer = async () => {
-    require("./loaders")();
-  };
-  
-  startServer();
-  
+  require("./loaders")();
+};
+
+startServer();
