@@ -16,6 +16,14 @@ class DestinationRepository {
       where: { id },
     });
   }
+
+  async remove(id) {
+    return await Destination.destroy({
+      where: {
+        id,
+      },
+    });
+  }
 }
 
 

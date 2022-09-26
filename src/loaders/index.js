@@ -4,11 +4,12 @@ const config = require("../config");
 const logger = require("./logger");
 
 require("../models/destination");
+require("../models/user");
 
 module.exports = async () => {
   try {
     await sequelize.authenticate();
-    await sequelize.sync();
+    await sequelize.sync({ alter: true }); // { alter: true } This checks what is the current state of the table in the database and then performs the necessary changes in the table to make it match the model.
     logger.info("Models were synchronized successfully.");
     const server = new ExpressServer();
     logger.info("Express Loaded");

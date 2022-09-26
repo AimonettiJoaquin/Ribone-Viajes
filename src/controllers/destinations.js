@@ -35,6 +35,11 @@ const getById = async (req, res) => {
   }
 };
 
+/**
+ *
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
 const updateDestination = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -46,8 +51,24 @@ const updateDestination = async (req, res, next) => {
   }
 };
 
+/**
+ *
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
+ const deleteDestination = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const destination = await destinationService.remove(id);
+    res.json(new Success(destination));
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   createDestination,
   getById,
-  updateDestination
+  updateDestination,
+  deleteDestination
 };

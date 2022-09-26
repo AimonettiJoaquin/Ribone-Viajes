@@ -18,10 +18,13 @@ const Destination = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    deletedAt:{
+      type: DataTypes.DATE
+    }
 
   },
   {
-    // Other model options go here
+    paranoid: true
   }
   
 );

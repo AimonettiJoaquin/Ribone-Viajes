@@ -23,15 +23,19 @@ const User = sequelize.define(
       allowNull: false,
       defaultValue: true,
     },
-    role:{
+    role: {
       type: DataTypes.ENUM({
-        values : ['USER_ROLE','ADMIN_ROLE']
+        values: ["USER_ROLE", "ADMIN_ROLE"],
       }),
-      defaultValue:'USER_ROLE'
-    }
+      defaultValue: "USER_ROLE",
+    },
+
+    deletedAt: {
+      type: DataTypes.DATE,
+    },
   },
   {
-    // Other model options go here
+    paranoid: true,
   }
 );
 module.exports = User;

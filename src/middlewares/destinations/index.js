@@ -46,8 +46,17 @@ const putRequestValidation = [
   validationResult,
 ];
 
+const deleteRequestValidation = [
+  validJWT,
+  hasRole(ADMIN_ROLE),
+  _idRequired,
+  _idExist,
+  validationResult,
+];
+
 module.exports = {
   postRequestValidation,
   getRequestValidation,
-  putRequestValidation
+  putRequestValidation,
+  deleteRequestValidation
 };
