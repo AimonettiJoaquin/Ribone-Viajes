@@ -9,7 +9,12 @@ const findById = async (id) => {
   return await repository.findById(id);
 };
 
+const update = async (id, a) => {
+  return await repository.update(id, a);
+};
+
 module.exports = {
   save,
   findById,
+  update
 };

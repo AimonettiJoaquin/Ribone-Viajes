@@ -14,8 +14,15 @@ const _idExist = check("id").custom(async (id = "") => {
   }
 });
 const _idIsNumeric = check("id").isNumeric();
+const _roleValid = check("role")
+  .optional()
+  .custom(async (role = "") => {
+    if (!ROLES.includes(role)) {
+      throw new AppError("Ivalid Role", 400);
+    }
+  });
 
-const postRequestValidations = [
+const postRequestValidation = [
   validJWT,
   hasRole(ADMIN_ROLE),
   _nameRequired,
@@ -29,7 +36,18 @@ const getRequestValidation = [
   validationResult,
 ];
 
+const putRequestValidation = [
+  validJWT,
+  hasRole(ADMIN_ROLE),
+  _idRequired,
+  _idExist,
+  _idIsNumeric,
+  _roleValid,
+  validationResult,
+];
+
 module.exports = {
-  postRequestValidations,
+  postRequestValidation,
   getRequestValidation,
+  putRequestValidation
 };
