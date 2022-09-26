@@ -54,9 +54,12 @@ const deleteRequestValidation = [
   validationResult,
 ];
 
+const getAllRequestValidation = [validJWT];
+
 module.exports = {
   postRequestValidation,
   getRequestValidation,
   putRequestValidation,
-  deleteRequestValidation
+  deleteRequestValidation,
+  getAllRequestValidation
 };

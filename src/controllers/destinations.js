@@ -66,9 +66,26 @@ const updateDestination = async (req, res, next) => {
   }
 };
 
+/**
+ *
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
+ const getAllDestinations = async (req, res, next) => {
+  try {
+    logger.info("Query: " + JSON.stringify(req.query));
+    const { filter = "", options = "" } = req.query;
+    const destination = await destinationService.findAll(filter, options);
+    res.json(new Success(destination));
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   createDestination,
   getById,
   updateDestination,
-  deleteDestination
+  deleteDestination,
+  getAllDestinations
 };
