@@ -1,5 +1,6 @@
 const { validationResult } = require("express-validator");
 const AppError = require("../errors/appError");
+const { checkSchema } = require('express-validator');
 
 const validResult = (req, res, next) => {
   const errors = validationResult(req);
@@ -8,7 +9,16 @@ const validResult = (req, res, next) => {
   }
   next();
 };
+const imageRequired = checkSchema({
+  'image': {
+    custom: {
+      options: (value, { req }) => !!req.file,
+      errorMessage: "You should upload a image",
+    },
+  },
+});
 
 module.exports = {
-  validationResult: validResult
+  validationResult: validResult,
+  imageRequired
 };

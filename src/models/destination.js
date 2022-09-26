@@ -23,5 +23,6 @@ const Destination = sequelize.define(
   {
     // Other model options go here
   }
+  
 );
 module.exports = Destination;

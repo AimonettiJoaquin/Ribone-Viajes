@@ -21,6 +21,21 @@ const createDestination = async (req, res, next) => {
   }
 };
 
+/**
+ * 
+ * @param {express.Request} req 
+ * @param {express.Response} res 
+ */
+ const getById = async (req, res) => {
+  try {
+      const destination = await destinationService.findById(req.params.id);
+      res.json(new Success(destination));
+  } catch (err) {
+      next(err);
+  }
+};
+
 module.exports = {
   createDestination,
+  getById
 };
