@@ -5,6 +5,7 @@ const logger = require("./logger");
 
 require("../models/destination");
 require("../models/user");
+require("../models/transport");
 
 module.exports = async () => {
   try {
