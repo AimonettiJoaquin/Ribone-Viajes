@@ -54,8 +54,40 @@ const createTransport = async (req, res, next) => {
   }
 };
 
+/**
+ *
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
+ const getById = async (req, res) => {
+  try {
+    const transport = await transportService.findById(req.params.id);
+    res.json(new Success(transport));
+  } catch (err) {
+    next(err);
+  }
+};
+
+/**
+ *
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
+ const getAllTransports = async (req, res, next) => {
+  try {
+    logger.info("Query: " + JSON.stringify(req.query));
+    const { filter = "", options = "" } = req.query;
+    const transport = await transportService.findAll(filter, options);
+    res.json(new Success(transport));
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   createTransport,
   updateTransport,
-  deleteTransport
+  deleteTransport,
+  getById,
+  getAllTransports
 };

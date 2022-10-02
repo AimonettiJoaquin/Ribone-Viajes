@@ -24,6 +24,19 @@ class TransportRepository {
       },
     });
   }
+
+  async findAll({ name }, { limit, offset }) {
+    let where = {};
+    if (name) {
+      where.name = {
+        [Op.substring]: name,
+      };
+    }
+    return await Transport.findAll({
+      where,
+      attributes: ["name"],
+    });
+  }
 }
 
 module.exports = TransportRepository;
