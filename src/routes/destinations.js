@@ -4,14 +4,16 @@ const {
   getById,
   updateDestination,
   deleteDestination,
-  getAllDestinations
+  getAllDestinations,
+  uploadDestinationImage
 } = require("../controllers/destinations.js");
 const {
   postRequestValidation,
   getRequestValidation,
   putRequestValidation,
   deleteRequestValidation,
-  getAllRequestValidation
+  getAllRequestValidation,
+  postImageRequestValidations
 } = require("../middlewares/destinations");
 
 const router = Router();
@@ -21,5 +23,6 @@ router.get("/:id(\\d+)/", getRequestValidation, getById);
 router.put("/:id(\\d+)/", putRequestValidation, updateDestination);
 router.delete("/:id(\\d+)/", deleteRequestValidation, deleteDestination);
 router.get("/", getAllRequestValidation, getAllDestinations);
+router.post("/image", postImageRequestValidations, uploadDestinationImage);
 
 module.exports = router;

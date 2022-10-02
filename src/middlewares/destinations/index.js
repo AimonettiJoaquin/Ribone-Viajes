@@ -1,5 +1,7 @@
 const { check } = require("express-validator");
-const { validationResult } = require("../commons");
+const multer = require("multer");
+const upload = multer();
+const { validationResult, imageRequired } = require("../commons");
 const destinationService = require("../../services/destinationService");
 const AppError = require("../../errors/appError");
 const { ROLES, ADMIN_ROLE, USER_ROLE } = require("../../constants");
@@ -56,10 +58,22 @@ const deleteRequestValidation = [
 
 const getAllRequestValidation = [validJWT];
 
+const postImageRequestValidations = [
+  validJWT,
+  hasRole(USER_ROLE, ADMIN_ROLE),
+  upload.single('image'),
+  _idRequired,
+  _idIsNumeric,
+  _idExist,
+  imageRequired,
+  validationResult,
+];
+
 module.exports = {
   postRequestValidation,
   getRequestValidation,
   putRequestValidation,
   deleteRequestValidation,
-  getAllRequestValidation
+  getAllRequestValidation,
+  postImageRequestValidations
 };
