@@ -3,8 +3,18 @@ const { Op } = require("sequelize");
 class TransportRepository {
   constructor() {}
 
-  async save(destination) {
-    return await Transport.create(destination);
+  async save(transport) {
+    return await Transport.create(transport);
+  }
+
+  async findById(id) {
+    return await Transport.findByPk(id);
+  }
+
+  async update(id, transport) {
+    return await Transport.update(transport, {
+      where: { id },
+    });
   }
 }
 

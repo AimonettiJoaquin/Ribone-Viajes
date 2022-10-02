@@ -21,6 +21,24 @@ const createTransport = async (req, res, next) => {
   }
 };
 
+/**
+ *
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
+ const updateTransport = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    let transport = req.body;
+    logger.info(transport);
+    const transportUpdated = await transportService.update(id, transport);
+    res.json(new Success(transportUpdated));
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   createTransport,
+  updateTransport
 };

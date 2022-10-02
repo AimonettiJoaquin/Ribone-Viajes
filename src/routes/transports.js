@@ -2,12 +2,16 @@ const { Router } = require("express");
 const router = Router();
 
 const {
-    createTransport
-  } = require("../controllers/transports.js");
+  createTransport,
+  updateTransport,
+} = require("../controllers/transports.js");
 
-const { postRequestValidation } = require("../middlewares/transports");
+const {
+  postRequestValidation,
+  putRequestValidation,
+} = require("../middlewares/transports");
 
 router.post("/", postRequestValidation, createTransport);
+router.put("/:id(\\d+)/", putRequestValidation, updateTransport);
 
 module.exports = router;
- 
