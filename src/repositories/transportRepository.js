@@ -16,6 +16,14 @@ class TransportRepository {
       where: { id },
     });
   }
+
+  async remove(id) {
+    return await Transport.destroy({
+      where: {
+        id,
+      },
+    });
+  }
 }
 
 module.exports = TransportRepository;

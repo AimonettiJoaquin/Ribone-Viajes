@@ -11,8 +11,14 @@ const findById = async (id) => {
 const update = async (id, transport) => {
   return await repository.update(id, transport);
 };
+
+const remove = async (id) => {
+  return await repository.remove(id);
+};
+
 module.exports = {
   save,
   findById,
   update,
+  remove
 };

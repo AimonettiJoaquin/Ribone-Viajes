@@ -38,7 +38,24 @@ const createTransport = async (req, res, next) => {
   }
 };
 
+/**
+/**
+ *
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
+ const deleteTransport = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const transport = await transportService.remove(id);
+    res.json(new Success(transport));
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   createTransport,
-  updateTransport
+  updateTransport,
+  deleteTransport
 };
