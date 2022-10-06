@@ -6,6 +6,7 @@ class LodgingRepository {
   async save(lodging) {
     return await Lodging.create(lodging);
   }
+  
   async findAll({ name, destinationId }, { limit, offset }) {
     let where = {};
     if (name) {
@@ -26,6 +27,14 @@ class LodgingRepository {
 
   async findById(id) {
     return await Lodging.findByPk(id);
+  }
+
+  async remove(id) {
+    return await Lodging.destroy({
+      where: {
+        id,
+      },
+    });
   }
 }
 

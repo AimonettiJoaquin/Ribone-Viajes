@@ -12,8 +12,13 @@ const findAll = async (filter, options) => {
   return await repository.findAll(filter, options);
 };
 
+const remove = async (id) => {
+  return await repository.remove(id);
+};
+
 module.exports = {
   save,
   findById,
   findAll,
+  remove
 };

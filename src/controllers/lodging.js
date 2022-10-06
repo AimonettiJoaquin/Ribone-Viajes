@@ -49,4 +49,20 @@ const getAll = async (req, res, next) => {
   }
 };
 
-module.exports = { createLodging, getById, getAll };
+/**
+/**
+ *
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
+ const deleteLodging = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const lodging = await lodgingService.remove(id);
+    res.json(new Success(lodging));
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { createLodging, getById, getAll, deleteLodging };
