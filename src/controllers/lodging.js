@@ -19,4 +19,34 @@ const createLodging = async (req, res, next) => {
   }
 };
 
-module.exports = { createLodging };
+/**
+ *
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
+const getById = async (req, res) => {
+  try {
+    const lodging = await lodgingService.findById(req.params.id);
+    res.json(new Success(lodging));
+  } catch (err) {
+    next(err);
+  }
+};
+
+/**
+ *
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
+const getAll = async (req, res, next) => {
+  try {
+    logger.info("Query: " + JSON.stringify(req.query));
+    const { filter = "", options = "" } = req.query;
+    const lodging = await lodgingService.findAll(filter, options);
+    res.json(new Success(lodging));
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { createLodging, getById, getAll };

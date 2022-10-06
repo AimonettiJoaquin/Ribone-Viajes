@@ -18,6 +18,10 @@ const Lodging = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    destinationId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
     deletedAt:{
       type: DataTypes.DATE
     }
@@ -29,8 +33,8 @@ const Lodging = sequelize.define(
   
 );
 module.exports = Lodging;
-
+/* 
 Lodging.belongsTo(require('./destination'),{
   through:"Lodgings",
   foreignKey:"destinationId"
-})
+}) */
