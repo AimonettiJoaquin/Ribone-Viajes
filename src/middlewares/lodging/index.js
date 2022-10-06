@@ -71,6 +71,17 @@ const putRequestValidation = [
   validationResult,
 ];
 
+const postImageRequestValidations = [
+  validJWT,
+  hasRole(USER_ROLE, ADMIN_ROLE),
+  upload.single('image'),
+  _idRequired,
+  _idIsNumeric,
+  _idExist,
+  imageRequired,
+  validationResult,
+];
+
 const getAllRequestValidation = [validJWT];
 
 module.exports = {
@@ -78,5 +89,6 @@ module.exports = {
   getRequestValidation,
   getAllRequestValidation,
   deleteRequestValidation,
-  putRequestValidation
+  putRequestValidation,
+  postImageRequestValidations
 };

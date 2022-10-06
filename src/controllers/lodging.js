@@ -1,5 +1,6 @@
 const express = require("express");
 const lodgingService = require("../services/lodgingService.js");
+const imageService = require("../services/imageService");
 const Success = require("../handlers/successHandler");
 const logger = require("../loaders/logger");
 
@@ -55,7 +56,7 @@ const getAll = async (req, res, next) => {
  * @param {express.Request} req
  * @param {express.Response} res
  */
- const deleteLodging = async (req, res, next) => {
+const deleteLodging = async (req, res, next) => {
   try {
     const { id } = req.params;
     const lodging = await lodgingService.remove(id);
@@ -70,7 +71,7 @@ const getAll = async (req, res, next) => {
  * @param {express.Request} req
  * @param {express.Response} res
  */
- const updateLodging = async (req, res, next) => {
+const updateLodging = async (req, res, next) => {
   try {
     const { id } = req.params;
     let lodging = req.body;
@@ -81,4 +82,29 @@ const getAll = async (req, res, next) => {
   }
 };
 
-module.exports = { createLodging, getById, getAll, deleteLodging, updateLodging };
+/**
+ *
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
+const uploadLodgingImage = async (req, res, next) => {
+  try {
+    const lodgingId = req.body.id;
+    const image = req.file;
+
+    res.json(
+      new Success(await imageService.uploadLodgingImage(lodgingId, image))
+    );
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = {
+  createLodging,
+  getById,
+  getAll,
+  deleteLodging,
+  updateLodging,
+  uploadLodgingImage,
+};
