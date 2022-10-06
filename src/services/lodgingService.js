@@ -1,4 +1,4 @@
-const LodgingRepository = require("../repositories/LodgingRepository.js");
+const LodgingRepository = require("../repositories/lodgingRepository.js");
 const repository = new LodgingRepository();
 
 const save = async (lodging) => {
@@ -16,9 +16,14 @@ const remove = async (id) => {
   return await repository.remove(id);
 };
 
+const update = async (id, transport) => {
+  return await repository.update(id, transport);
+};
+
 module.exports = {
   save,
   findById,
   findAll,
-  remove
+  remove,
+  update
 };

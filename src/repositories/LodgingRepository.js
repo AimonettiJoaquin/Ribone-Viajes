@@ -36,6 +36,12 @@ class LodgingRepository {
       },
     });
   }
+
+  async update(id, lodging) {
+    return await Lodging.update(lodging, {
+      where: { id },
+    });
+  }
 }
 
 module.exports = LodgingRepository;

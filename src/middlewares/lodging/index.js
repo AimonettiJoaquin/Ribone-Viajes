@@ -27,6 +27,13 @@ const _idExist = check("id").custom(async (id = "") => {
     throw new AppError("The lodging's id does not exist in DB", 400);
   }
 });
+const _roleValid = check("role")
+  .optional()
+  .custom(async (role = "") => {
+    if (!ROLES.includes(role)) {
+      throw new AppError("Ivalid Role", 400);
+    }
+  });
 
 const postRequestValidation = [
   validJWT,
@@ -54,10 +61,22 @@ const deleteRequestValidation = [
   validationResult,
 ];
 
+const putRequestValidation = [
+  validJWT,
+  hasRole(ADMIN_ROLE),
+  _idRequired,
+  _idExist,
+  _idIsNumeric,
+  _roleValid,
+  validationResult,
+];
+
 const getAllRequestValidation = [validJWT];
+
 module.exports = {
   postRequestValidation,
   getRequestValidation,
   getAllRequestValidation,
-  deleteRequestValidation
+  deleteRequestValidation,
+  putRequestValidation
 };
