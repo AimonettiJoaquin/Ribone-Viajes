@@ -7,6 +7,7 @@ require("../models/destination");
 require("../models/user");
 require("../models/transport");
 require("../models/lodging");
+require("../models/client");
 
 module.exports = async () => {
   try {
