@@ -12,14 +12,14 @@ const Client = sequelize.define(
     },
     lastName: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     email: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    telefono: {
-      type: DataTypes.INTEGER,
+    phoneNumber: {
+      type: DataTypes.STRING,
       allowNull: true,
     },
     deletedAt:{
