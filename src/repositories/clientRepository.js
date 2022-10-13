@@ -28,6 +28,12 @@ class ClientRepository {
       attributes: ["name", "lastName"],
     });
   }
+
+  async update(id, client) {
+    return await Client.update(client, {
+      where: { id },
+    });
+  }
 }
 
 module.exports = ClientRepository;

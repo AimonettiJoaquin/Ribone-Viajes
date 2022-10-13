@@ -49,8 +49,25 @@ const createClient = async (req, res, next) => {
   }
 };
 
+/**
+ *
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
+ const updateClient = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    let client = req.body;
+    const clientUpdated = await clientService.update(id, client);
+    res.json(new Success(clientUpdated));
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   createClient,
   getById,
-  getAllClients
+  getAllClients,
+  updateClient
 };

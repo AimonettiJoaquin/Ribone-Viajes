@@ -13,9 +13,13 @@ const findAll = async (filter, options) => {
   return await repository.findAll(filter, options);
 };
 
+const update = async (id, client) => {
+  return await repository.update(id, client);
+};
 
 module.exports = {
   save,
   findById,
-  findAll
+  findAll,
+  update
 };
