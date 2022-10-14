@@ -1,6 +1,5 @@
 const Destination = require("../models/destination");
-
-
+const { Op } = require("sequelize");
 class DestinationRepository {
   constructor() {}
 
@@ -24,7 +23,19 @@ class DestinationRepository {
       },
     });
   }
-}
 
+  async findAll({ name }, { limit, offset }) {
+    let where = {};
+    if (name) {
+      where.name = {
+        [Op.substring]: name,
+      };
+    }
+    return await Destination.findAll({
+      where,
+      attributes: ["name", "description", "image"],
+    });
+  }
+}
 
 module.exports = DestinationRepository;

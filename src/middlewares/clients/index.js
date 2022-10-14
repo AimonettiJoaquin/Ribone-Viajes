@@ -2,16 +2,17 @@ const { check } = require("express-validator");
 const multer = require("multer");
 const upload = multer();
 const { validationResult, imageRequired } = require("../commons");
-const destinationService = require("../../services/destinationService");
+const clientService = require("../../services/clientService");
 const AppError = require("../../errors/appError");
 const { ROLES, ADMIN_ROLE, USER_ROLE } = require("../../constants");
 const { validJWT, hasRole } = require("../auth");
 
 const _nameRequired = check("name", "Name required").not().isEmpty();
+const _lastNameRequired = check("lastName", "Last name required").not().isEmpty();
 const _idRequired = check("id").not().isEmpty();
 const _idExist = check("id").custom(async (id = "") => {
-  const destinationFound = await destinationService.findById(id);
-  if (!destinationFound) {
+  const clientFound = await clientService.findById(id);
+  if (!clientFound) {
     throw new AppError("The id does not exist in DB", 400);
   }
 });
@@ -28,6 +29,7 @@ const postRequestValidation = [
   validJWT,
   hasRole(ADMIN_ROLE),
   _nameRequired,
+  _lastNameRequired,
   validationResult,
 ];
 const getRequestValidation = [

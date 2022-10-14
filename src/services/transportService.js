@@ -1,16 +1,15 @@
-const DestinationRepository = require("../repositories/destinationRepository");
-const repository = new DestinationRepository();
+const TransportRepository = require("../repositories/transportRepository.js");
+const repository = new TransportRepository();
 
-const save = async (destination) => {
-  return await repository.save(destination);
+const save = async (transport) => {
+  return await repository.save(transport);
 };
-
 const findById = async (id) => {
   return await repository.findById(id);
 };
 
-const update = async (id, destination) => {
-  return await repository.update(id, destination);
+const update = async (id, transport) => {
+  return await repository.update(id, transport);
 };
 
 const remove = async (id) => {

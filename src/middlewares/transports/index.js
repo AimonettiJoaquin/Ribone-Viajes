@@ -1,8 +1,6 @@
 const { check } = require("express-validator");
-const multer = require("multer");
-const upload = multer();
-const { validationResult, imageRequired } = require("../commons");
-const destinationService = require("../../services/destinationService");
+const { validationResult } = require("../commons");
+const transportService = require("../../services/transportService");
 const AppError = require("../../errors/appError");
 const { ROLES, ADMIN_ROLE, USER_ROLE } = require("../../constants");
 const { validJWT, hasRole } = require("../auth");
@@ -10,8 +8,8 @@ const { validJWT, hasRole } = require("../auth");
 const _nameRequired = check("name", "Name required").not().isEmpty();
 const _idRequired = check("id").not().isEmpty();
 const _idExist = check("id").custom(async (id = "") => {
-  const destinationFound = await destinationService.findById(id);
-  if (!destinationFound) {
+  const transportFound = await transportService.findById(id);
+  if (!transportFound) {
     throw new AppError("The id does not exist in DB", 400);
   }
 });
@@ -58,22 +56,10 @@ const deleteRequestValidation = [
 
 const getAllRequestValidation = [validJWT];
 
-const postImageRequestValidations = [
-  validJWT,
-  hasRole(USER_ROLE, ADMIN_ROLE),
-  upload.single('image'),
-  _idRequired,
-  _idIsNumeric,
-  _idExist,
-  imageRequired,
-  validationResult,
-];
-
 module.exports = {
   postRequestValidation,
   getRequestValidation,
   putRequestValidation,
   deleteRequestValidation,
-  getAllRequestValidation,
-  postImageRequestValidations
+  getAllRequestValidation
 };
