@@ -17,9 +17,14 @@ const update = async (id, client) => {
   return await repository.update(id, client);
 };
 
+const remove = async (id) => {
+  return await repository.remove(id);
+};
+
 module.exports = {
   save,
   findById,
   findAll,
-  update
+  update,
+  remove
 };

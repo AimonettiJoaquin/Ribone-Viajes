@@ -65,9 +65,25 @@ const createClient = async (req, res, next) => {
   }
 };
 
+/**
+ *
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
+ const deleteClient = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const client = await clientService.remove(id);
+    res.json(new Success(client));
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   createClient,
   getById,
   getAllClients,
-  updateClient
+  updateClient,
+  deleteClient
 };

@@ -34,6 +34,14 @@ class ClientRepository {
       where: { id },
     });
   }
+
+  async remove(id) {
+    return await Client.destroy({
+      where: {
+        id,
+      },
+    });
+  }
 }
 
 module.exports = ClientRepository;
