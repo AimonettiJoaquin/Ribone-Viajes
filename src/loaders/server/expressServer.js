@@ -15,6 +15,7 @@ class ExpressServer {
     this.basePathTransport = `${config.api.prefix}/transports`;
     this.basePathLodging = `${config.api.prefix}/lodgings`;
     this.basePathClient = `${config.api.prefix}/clients`;
+    this.basePathProvider = `${config.api.prefix}/providers`;
 
     this._middlewares();
 
@@ -46,6 +47,7 @@ class ExpressServer {
     this.app.use(this.basePathTransport, require("../../routes/transports"));
     this.app.use(this.basePathLodging, require("../../routes/lodgings"));
     this.app.use(this.basePathClient, require("../../routes/clients"));
+    this.app.use(this.basePathProvider, require("../../routes/providers"));
   }
 
   _notFound() {

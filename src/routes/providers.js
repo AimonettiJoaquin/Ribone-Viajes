@@ -1,12 +1,12 @@
 const { Router } = require("express");
-/* const {
-  createDestination,
-  getById,
+const {
+  createProvider,
+ /*  getById,
   updateDestination,
   deleteDestination,
   getAllDestinations,
-  uploadDestinationImage
-} = require("../controllers/destinations.js");
+  uploadDestinationImage */
+} = require("../controllers/providers.js");
 const {
   postRequestValidation,
   getRequestValidation,
@@ -14,15 +14,14 @@ const {
   deleteRequestValidation,
   getAllRequestValidation,
   postImageRequestValidations
-} = require("../middlewares/destinations"); */
+} = require("../middlewares/providers");
 
 const router = Router();
-
-/* router.post("/", postRequestValidation, createDestination);
-router.get("/:id(\\d+)/", getRequestValidation, getById);
-router.put("/:id(\\d+)/", putRequestValidation, updateDestination);
-router.delete("/:id(\\d+)/", deleteRequestValidation, deleteDestination);
-router.get("/", getAllRequestValidation, getAllDestinations);
-router.post("/image", postImageRequestValidations, uploadDestinationImage); */
+router.post("/", postRequestValidation, createProvider);
+/* router.get("/:id(\\d+)/", getRequestValidation, getById); */
+/* router.put("/:id(\\d+)/", putRequestValidation, updateDestination);*/
+/* router.delete("/:id(\\d+)/", deleteRequestValidation, deleteDestination);*/
+/* router.get("/", getAllRequestValidation, getAllDestinations); */
+/* router.post("/image", postImageRequestValidations, uploadDestinationImage); */
 
 module.exports = router;

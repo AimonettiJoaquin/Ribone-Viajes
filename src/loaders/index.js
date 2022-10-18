@@ -13,7 +13,7 @@ require("../models/provider");
 module.exports = async () => {
   try {
     await sequelize.authenticate();
-    await sequelize.sync({ alter: true });
+    await sequelize.sync(/* { alter: true } */);
     logger.info("Models were synchronized successfully.");
     const server = new ExpressServer();
     logger.info("Express Loaded");
