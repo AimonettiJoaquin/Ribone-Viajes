@@ -3,12 +3,13 @@ const sequelize = require("./sequelize");
 const config = require("../config");
 const logger = require("./logger");
 
-require("../models/destination");
+/* require("../models/destination");
 require("../models/user");
 require("../models/transport");
 require("../models/lodging");
 require("../models/client");
-require("../models/provider");
+require("../models/provider"); */
+require("../models/package");
 
 module.exports = async () => {
   try {
