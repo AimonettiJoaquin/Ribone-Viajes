@@ -3,6 +3,7 @@ const {
   createProvider,
   getById,
   getAllProvider,
+  updateProvider
 } = require("../controllers/providers.js");
 const {
   postRequestValidation,
@@ -17,7 +18,7 @@ const router = Router();
 router.post("/", postRequestValidation, createProvider);
 router.get("/:id(\\d+)/", getRequestValidation, getById);
 router.get("/", getAllRequestValidation, getAllProvider);
-/* router.put("/:id(\\d+)/", putRequestValidation, updateDestination);*/
+router.put("/:id(\\d+)/", putRequestValidation, updateProvider);
 /* router.delete("/:id(\\d+)/", deleteRequestValidation, deleteDestination);*/
 
 /* router.post("/image", postImageRequestValidations, uploadDestinationImage); */

@@ -50,8 +50,25 @@ const getAllProvider = async (req, res, next) => {
   }
 };
 
+/**
+ *
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
+ const updateProvider = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    let provider = req.body;
+    const providerUpdated = await providerService.update(id, provider);
+    res.json(new Success(providerUpdated));
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   createProvider,
   getById,
   getAllProvider,
+  updateProvider
 };
