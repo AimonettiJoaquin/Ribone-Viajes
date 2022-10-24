@@ -66,9 +66,25 @@ const getAllProvider = async (req, res, next) => {
   }
 };
 
+/**
+ *
+ * @param {express.Request} req
+ * @param {express.Response} res
+ */
+ const deleteProvider = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const provider = await providerService.remove(id);
+    res.json(new Success(provider));
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   createProvider,
   getById,
   getAllProvider,
-  updateProvider
+  updateProvider,
+  deleteProvider
 };
