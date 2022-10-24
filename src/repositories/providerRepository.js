@@ -33,7 +33,7 @@ class ProviderRepository {
     }
     return await Provider.findAll({
       where,
-      attributes: ["name", "description", "image"],
+      attributes: ["name", "image"],
     });
   }
 }
