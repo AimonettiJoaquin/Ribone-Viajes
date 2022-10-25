@@ -38,16 +38,16 @@ const getById = async (req, res) => {
  * @param {express.Request} req
  * @param {express.Response} res
  */
-/* const updateDestination = async (req, res, next) => {
+const updatePackage = async (req, res, next) => {
   try {
     const { id } = req.params;
-    let destination = req.body;
-    const destinationUpdated = await destinationService.update(id, destination);
-    res.json(new Success(destinationUpdated));
+    let package = req.body;
+    const packageUpdated = await packageService.update(id, package);
+    res.json(new Success(packageUpdated));
   } catch (err) {
     next(err);
   }
-}; */
+};
 
 /**
  *
@@ -100,4 +100,4 @@ const getAllPackages = async (req, res, next) => {
   }
 };
  */
-module.exports = { createPackage, getById, getAllPackages };
+module.exports = { createPackage, getById, getAllPackages, updatePackage };
