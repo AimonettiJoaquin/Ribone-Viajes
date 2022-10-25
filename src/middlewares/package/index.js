@@ -1,8 +1,6 @@
 const { check } = require("express-validator");
-const multer = require("multer");
-const upload = multer();
-const { validationResult, imageRequired } = require("../commons");
-const destinationService = require("../../services/destinationService");
+const { validationResult } = require("../commons");
+const packageService = require("../../services/packageService");
 const AppError = require("../../errors/appError");
 const { ROLES, ADMIN_ROLE, USER_ROLE } = require("../../constants");
 const { validJWT, hasRole } = require("../auth");
@@ -14,8 +12,8 @@ const _fromRequired = check("from", "Departure location required").not().isEmpty
 const _routeRequired = check("route", "Route required").not().isEmpty();
 const _idRequired = check("id").not().isEmpty();
 const _idExist = check("id").custom(async (id = "") => {
-  const destinationFound = await destinationService.findById(id);
-  if (!destinationFound) {
+  const packageFound = await packageService.findById(id);
+  if (!packageFound) {
     throw new AppError("The id does not exist in DB", 400);
   }
 });

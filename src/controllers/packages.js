@@ -24,14 +24,14 @@ const createPackage = async (req, res, next) => {
  * @param {express.Request} req
  * @param {express.Response} res
  */
-/* const getById = async (req, res) => {
+const getById = async (req, res) => {
   try {
-    const destination = await destinationService.findById(req.params.id);
-    res.json(new Success(destination));
+    const package = await packageService.findById(req.params.id);
+    res.json(new Success(package));
   } catch (err) {
     next(err);
   }
-}; */
+};
 
 /**
  *
@@ -69,17 +69,17 @@ const createPackage = async (req, res, next) => {
  * @param {express.Request} req
  * @param {express.Response} res
  */
-/* const getAllDestinations = async (req, res, next) => {
+const getAllPackages = async (req, res, next) => {
   try {
     logger.info("Query: " + JSON.stringify(req.query));
     const { filter = "", options = "" } = req.query;
-    const destination = await destinationService.findAll(filter, options);
-    res.json(new Success(destination));
+    const package = await packageService.findAll(filter, options);
+    res.json(new Success(package));
   } catch (err) {
     next(err);
   }
 };
- */
+
 /**
  *
  * @param {express.Request} req
@@ -100,4 +100,4 @@ const createPackage = async (req, res, next) => {
   }
 };
  */
-module.exports = { createPackage };
+module.exports = { createPackage, getById, getAllPackages };

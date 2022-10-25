@@ -33,7 +33,7 @@ class PackageRepository {
     }
     return await Package.findAll({
       where,
-      attributes: ["name", "description", "image"],
+      /* attributes: ["name", "description", "image"], */
     });
   }
 }
