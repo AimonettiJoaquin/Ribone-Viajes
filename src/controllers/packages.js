@@ -54,15 +54,15 @@ const updatePackage = async (req, res, next) => {
  * @param {express.Request} req
  * @param {express.Response} res
  */
-/* const deleteDestination = async (req, res, next) => {
+const deletePackage = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const destination = await destinationService.remove(id);
-    res.json(new Success(destination));
+    const package = await packageService.remove(id);
+    res.json(new Success(package));
   } catch (err) {
     next(err);
   }
-}; */
+};
 
 /**
  *
@@ -80,24 +80,4 @@ const getAllPackages = async (req, res, next) => {
   }
 };
 
-/**
- *
- * @param {express.Request} req
- * @param {express.Response} res
- */
-/* const uploadDestinationImage = async (req, res, next) => {
-  try {
-    const destinationId = req.body.id;
-    const image = req.file;
-
-    res.json(
-      new Success(
-        await imageService.uploadDestinationImage(destinationId, image)
-      )
-    );
-  } catch (err) {
-    next(err);
-  }
-};
- */
-module.exports = { createPackage, getById, getAllPackages, updatePackage };
+module.exports = { createPackage, getById, getAllPackages, updatePackage,deletePackage };
